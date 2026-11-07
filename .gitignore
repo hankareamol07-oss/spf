@@ -1,0 +1,37 @@
+/vendor
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Binaries and zips
+/php/
+*.zip
+*.dll
+*.exe
+
+# Large presentations
+Sharad Pawar fellowship/*.pptx
+Sharad Pawar fellowship/*.ppt
+Sharad Pawar fellowship/Data/
+
+# Laravel
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+auth.json
+
+# Storage
+storage/*.key
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+
+# OS generated files
+.DS_Store
+Thumbs.db
+*.pem
+*.key

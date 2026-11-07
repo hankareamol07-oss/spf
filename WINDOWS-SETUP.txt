@@ -1,0 +1,98 @@
+MARATHI & MATHEMATICS LEARNING PORTAL — WINDOWS LOCAL TESTING
+================================================================
+
+This corrected package includes an official portable PHP 8.4 x64 runtime.
+It does not use your old XAMPP PHP 8.0 installation. XAMPP, Composer, npm,
+Apache, MySQL, and asset compilation are not required.
+
+Quick start
+-----------
+1. Extract the complete ZIP to a normal writable folder, for example:
+   C:\learning-portal
+
+2. Double-click:
+   START-PORTAL.bat
+
+3. Keep the command window open. The login page should open automatically:
+   http://127.0.0.1:8000/login
+
+If Windows blocks the batch file, right-click it, choose Properties, enable
+"Unblock" if shown, click OK, and run it again.
+
+Required Microsoft runtime
+--------------------------
+The included official PHP build requires the Microsoft Visual C++ 2015-2022
+x64 Redistributable. If START-PORTAL.bat closes or reports a missing DLL,
+install it from:
+
+https://aka.ms/vs/17/release/vc_redist.x64.exe
+
+Then run START-PORTAL.bat again.
+
+Demo logins
+-----------
+All accounts use this password:
+password
+
+Super administrator:
+admin@example.test
+
+School administrator:
+school-admin@example.test
+
+Mentor:
+mentor@example.test
+
+Students:
+student1@example.test through student15@example.test
+
+Suggested workflow to test
+--------------------------
+1. Log in as mentor@example.test.
+2. Select a student and assign a Class 4 Marathi or Mathematics pre-test.
+3. Log out and log in as that student.
+4. Complete the assigned pre-test and review outcome/competency diagnosis.
+5. Open a recommended practice activity, game, or simulation.
+6. Complete the post-test and review baseline/current/improvement progress.
+
+Manual commands
+---------------
+Open Command Prompt in this extracted folder and use the bundled PHP:
+
+php\php.exe artisan optimize:clear
+php\php.exe artisan serve --host=127.0.0.1 --port=8000
+
+Never use only "php artisan ..." on this computer because that may select
+XAMPP PHP 8.0, which cannot run this Laravel version.
+
+Troubleshooting
+---------------
+"Port 8000 is already in use"
+  Run:
+  php\php.exe artisan serve --host=127.0.0.1 --port=8001
+  Then open:
+  http://127.0.0.1:8001/login
+
+"Permission denied" or database is read-only
+  Move the extracted package outside Program Files, remove the read-only
+  attribute, and ensure these locations are writable:
+  database\database.sqlite
+  storage
+  bootstrap\cache
+
+Reset all demo data
+-------------------
+From Command Prompt inside the extracted folder, run:
+php\php.exe artisan migrate:fresh --seed --force
+
+Runtime information
+-------------------
+Bundled runtime: official PHP 8.4 x64 Non Thread Safe build for Windows.
+It is configured with the extensions required by this portal, including
+curl, fileinfo, mbstring, openssl, PDO SQLite, and SQLite.
+
+Important
+---------
+This package is configured for LOCAL TESTING only. Before public deployment,
+set APP_ENV=production, APP_DEBUG=false, use a private MySQL database, change
+all demo passwords, configure HTTPS, and point the web root at public\.

@@ -1,0 +1,10 @@
+Bundled PHP runtime
+===================
+
+Version: PHP 8.4.25
+Build: Windows VS17 x64 Non Thread Safe
+Source: https://windows.php.net/downloads/releases/latest/php-8.4-nts-Win32-vs17-x64-latest.zip
+Downloaded archive SHA-256:
+43a8f67ed2e5223fafb21293c85976361808855405278cef2cf3037c3ae2529c
+
+PHP's license and redistribution notices are included inside the php folder.
