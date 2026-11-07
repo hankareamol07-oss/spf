@@ -49,10 +49,10 @@ class StudentGameController extends Controller
         $stats = [
             'total_games' => $games->count(),
             'completed_sessions' => GameSession::query()->where('status', 'completed')->count(),
-            'class_accuracy' => (float) (GameSession::query()
+            'class_accuracy' => GameSession::query()
                 ->where('status', 'completed')
                 ->join('game_results', 'game_sessions.id', '=', 'game_results.game_session_id')
-                ->avg('game_results.accuracy') ?? 84.5),
+                ->avg('game_results.accuracy'),
         ];
 
         return view('games.index', compact('games', 'gradeLevel', 'recentSessions', 'student', 'stats'));

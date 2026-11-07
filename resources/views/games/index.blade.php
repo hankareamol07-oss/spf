@@ -1,250 +1,219 @@
 <x-layouts.app title="इयत्ता चौथी विशेष: डिजिटल अध्ययन खेळ व प्रगती मापन">
-    <div class="mb-4">
-        <!-- Fellowship & School Header Banner -->
-        <div class="card border-0 shadow-sm rounded-4 text-white overflow-hidden mb-4" style="background: linear-gradient(135deg, #432874 0%, #6f42c1 50%, #d63384 100%);">
-            <div class="card-body p-4 p-lg-5 position-relative">
-                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-                    <div style="max-width: 48rem;">
-                        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-white bg-opacity-25 text-white small fw-bold mb-3">
-                            <i class="bi bi-award-fill text-warning"></i>
-                            <span>शरद पवार इन्स्पायर फेलोशिप २०२६-२७ · जि. प. शाळा नं. २ कुची</span>
-                        </div>
-                        <h1 class="display-6 fw-bold mb-2">इयत्ता चौथी: डिजिटल अध्ययन खेळ व प्रगती मापन</h1>
-                        <p class="lead fs-6 mb-0 text-white-50">
-                            निपुण महाराष्ट्र (SCERT) व NEP 2020 अध्ययन निष्पत्ती आधारित शैक्षणिक खेळ. 
-                            विद्यार्थ्यांचे स्वयंअध्ययन, आनंददायी खेळ आणि वस्तुनिष्ठ प्रगती मापन.
-                        </p>
-                    </div>
+    <link rel="stylesheet" href="{{ asset('css/nipun-games.css') }}">
 
-                    <div class="d-flex flex-column gap-2">
-                        <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill shadow-sm">
-                            <i class="bi bi-mortarboard-fill me-1"></i>इयत्ता: ४ थी (Class 4)
-                        </span>
-                        <a class="btn btn-light rounded-pill fw-semibold shadow-sm text-primary" href="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? route('dashboard').'#learning-map' : route('fellowship.reports.index') }}">
-                            <i class="bi bi-map-fill text-warning me-1"></i>{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'माझा अध्ययन नकाशा' : 'फेलोशिप अहवाल' }}
-                        </a>
-                    </div>
+    <div class="nq-page">
+        <!-- Island hero -->
+        <section class="nq-hero">
+            <div class="d-flex flex-wrap align-items-start justify-content-between gap-3">
+                <div style="max-width: 46rem;">
+                    <span class="nq-eyebrow">
+                        <i class="bi bi-award-fill" aria-hidden="true"></i>
+                        <span>शरद पवार इन्स्पायर फेलोशिप २०२६-२७ · जि. प. शाळा नं. २ कुची</span>
+                    </span>
+                    <h1 class="nq-hero-title">इयत्ता चौथी: <span>डिजिटल अध्ययन खेळ</span> व प्रगती मापन</h1>
+                    <p class="nq-hero-lead">
+                        निपुण महाराष्ट्र (SCERT) व NEP 2020 अध्ययन निष्पत्ती आधारित शैक्षणिक खेळ.
+                        विद्यार्थ्यांचे स्वयंअध्ययन, आनंददायी खेळ आणि वस्तुनिष्ठ प्रगती मापन.
+                    </p>
                 </div>
 
-                <!-- Stats Counters Strip -->
-                <div class="row g-3 mt-3 pt-3 border-top border-white border-opacity-25 text-center">
-                    <div class="col-6 col-md-3">
-                        <div class="small text-white-50">उपलब्ध खेळ</div>
-                        <div class="fs-4 fw-bold text-white">{{ $stats['total_games'] ?? $games->count() }} खेळ</div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="small text-white-50">सराव सत्रे पूर्ण</div>
-                        <div class="fs-4 fw-bold text-warning">{{ $stats['completed_sessions'] ?? 0 }} सत्रे</div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="small text-white-50">वर्ग सरासरी अचूकता</div>
-                        <div class="fs-4 fw-bold text-info">{{ number_format((float) ($stats['class_accuracy'] ?? 84.5), 1) }}%</div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="small text-white-50">निपुण स्तर स्थिती</div>
-                        <div class="fs-4 fw-bold text-success">निपुण प्रगत 🏆</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Flagship AppleMath Showcase Card -->
-        <div class="card border-0 shadow-sm rounded-4 mb-4" style="background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%); border-left: 6px solid #e63946 !important;">
-            <div class="card-body p-4 d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="rounded-4 p-3 text-white fs-1 shadow-sm d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #e63946, #d90429); width: 70px; height: 70px;">
-                        🍎
-                    </div>
-                    <div>
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-danger rounded-pill px-2 py-1">विशेष गणित खेळ</span>
-                            <span class="badge bg-light text-dark border rounded-pill">श्री. अमोल किसन हंकारे निर्मित</span>
-                        </div>
-                        <h2 class="h4 fw-bold text-danger mb-1 mt-1">AppleMath (सफरचंद गणित)</h2>
-                        <p class="text-secondary mb-0 small">
-                            झाडावरील सफरचंद मोजून टोपलीत टाकणे, हातच्याची बेरीज, वजाबाकी आणि गुणाकार संकल्पनांचे परस्परसंवादी डिजिटल मॉडेल.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="d-flex align-items-center gap-2">
-                    <a class="btn btn-outline-danger rounded-pill px-4 fw-bold" href="https://games.techedu.in/applemath/" target="_blank" rel="noopener noreferrer">
-                        <i class="bi bi-box-arrow-up-right me-1"></i>थेट वेब व्हर्जन (TechEdu)
+                <div class="d-flex flex-column align-items-start align-items-md-end gap-3">
+                    <span class="nq-pill-grade">
+                        <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>इयत्ता: ४ थी (Class 4)
+                    </span>
+                    <a class="nq-btn nq-btn-light" href="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? route('dashboard').'#learning-map' : route('fellowship.reports.index') }}">
+                        <i class="bi bi-map-fill" aria-hidden="true"></i>{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'माझा अध्ययन नकाशा' : 'फेलोशिप अहवाल' }}
                     </a>
-                    @php
-                        $appleGame = $games->firstWhere('code', 'ADDITION_ADVENTURE') ?? $games->first();
-                    @endphp
-                    @if ($appleGame)
-                        <form method="POST" action="{{ route('games.start', $appleGame) }}">
-                            @csrf
-                            <button class="btn btn-danger rounded-pill px-4 fw-bold shadow-sm" type="submit">
-                                <i class="bi bi-play-circle-fill me-1"></i>पोर्टलवर खेळा
-                            </button>
-                        </form>
-                    @endif
                 </div>
             </div>
-        </div>
 
-        <!-- Filter Tabs for Class 4 -->
-        <div class="d-flex flex-wrap gap-2 mb-4" role="tablist" aria-label="खेळ वर्गवारी">
-            <button class="btn btn-primary rounded-pill px-3 py-2 fw-semibold active" type="button" data-filter="all">
-                🌟 सर्व खेळ ({{ $games->count() }})
-            </button>
-            <button class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-semibold" type="button" data-filter="applemath">
-                🍎 AppleMath व मूलभूत क्रिया
-            </button>
-            <button class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-semibold" type="button" data-filter="math">
-                🔢 संख्याज्ञान व भूमिती
-            </button>
-            <button class="btn btn-outline-secondary rounded-pill px-3 py-2 fw-semibold" type="button" data-filter="marathi">
-                📖 मराठी भाषा व व्याकरण
-            </button>
-        </div>
-    </div>
-
-    <!-- Games Cards Grid -->
-    <div class="row g-4" id="gamesGrid">
-        @forelse ($games as $game)
-            @php
-                $firstLevel = $game->levels->first();
-                $config = $game->configuration ?? [];
-                $category = data_get($config, 'category', 'math');
-                $icon = data_get($config, 'icon', '★');
-                $flnBadge = data_get($config, 'fln_badge', 'इयत्ता ४ थी');
-                $competency = data_get($config, 'competency', $game->skills->first()?->name_marathi);
-            @endphp
-            <div class="col-md-6 col-xl-4 game-item-col" data-category="{{ $category }}">
-                <article class="card portal-card game-catalog-card h-100 border-0 shadow-sm rounded-4 overflow-hidden position-relative">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
-                            <div class="game-catalog-icon rounded-4 shadow-sm" style="font-size: 2rem; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: #f3f0ff;">
-                                {{ $icon }}
-                            </div>
-                            <span class="badge rounded-pill text-bg-primary px-3 py-2">
-                                {{ $flnBadge }}
-                            </span>
-                        </div>
-
-                        <h2 class="h5 fw-bold text-dark mb-1">{{ $game->title_marathi }}</h2>
-                        <div class="text-secondary small mb-2">{{ $game->title }}</div>
-
-                        @if ($competency)
-                            <div class="badge text-bg-light text-secondary border mb-3 text-wrap text-start">
-                                <i class="bi bi-check2-circle text-success me-1"></i>{{ $competency }}
-                            </div>
-                        @endif
-
-                        <p class="text-muted small mb-3" style="min-height: 2.8rem;">
-                            {{ $game->description_marathi ?: $game->description }}
-                        </p>
-
-                        <div class="d-flex flex-wrap gap-2 small pt-2 border-top">
-                            <span class="badge rounded-pill text-bg-light border">
-                                <i class="bi bi-layers me-1"></i>{{ $game->levels->count() }} पातळ्या
-                            </span>
-                            <span class="badge rounded-pill text-bg-light border">
-                                <i class="bi bi-heart-fill text-danger me-1"></i>{{ data_get($firstLevel?->configuration, 'lives', 3) }} संधी
-                            </span>
-                            @if ($firstLevel?->time_limit_seconds)
-                                <span class="badge rounded-pill text-bg-light border">
-                                    <i class="bi bi-stopwatch text-primary me-1"></i>{{ $firstLevel->time_limit_seconds }} सेकंद
-                                </span>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="card-footer border-0 bg-transparent p-4 pt-0">
-                        <form method="POST" action="{{ route('games.start', $game) }}">
-                            @csrf
-                            <button class="btn btn-primary btn-lg w-100 rounded-pill fw-bold shadow-sm" type="submit">
-                                <i class="bi bi-play-circle me-1"></i>खेळ सुरू करा
-                            </button>
-                        </form>
-                    </div>
-                </article>
-            </div>
-        @empty
-            <div class="col-12">
-                <div class="alert alert-info rounded-4 p-4 text-center">
-                    <i class="bi bi-info-circle fs-3 d-block mb-2"></i>
-                    इयत्ता ४ थी साठी सध्या कोणताही प्रकाशित अध्ययन खेळ उपलब्ध नाही.
+            <div class="nq-stats">
+                <div class="nq-stat">
+                    <small>उपलब्ध खेळ</small>
+                    <strong>{{ $stats['total_games'] ?? $games->count() }} खेळ</strong>
                 </div>
-            </div>
-        @endforelse
-    </div>
-
-    <!-- Recent Attempts Section -->
-    @if ($recentSessions->isNotEmpty())
-        <section class="card portal-card border-0 shadow-sm rounded-4 mt-5">
-            <div class="card-header bg-white border-0 p-4 pb-2 d-flex align-items-center justify-content-between">
-                <div>
-                    <h2 class="h5 fw-bold mb-1">इयत्ता ४ थी: अलीकडील खेळ सत्रे</h2>
-                    <p class="text-secondary small mb-0">विद्यार्थ्यांनी सोडवलेले खेळ व नोंदवलेले प्रगती निकाल</p>
+                <div class="nq-stat">
+                    <small>सराव सत्रे पूर्ण</small>
+                    <strong>{{ $stats['completed_sessions'] ?? 0 }} सत्रे</strong>
                 </div>
-                <span class="badge bg-success rounded-pill px-3 py-2">
-                    <i class="bi bi-graph-up me-1"></i>थेट निकाल
-                </span>
-            </div>
-            <div class="table-responsive p-3 pt-0">
-                <table class="table align-middle mb-0">
-                    <thead class="table-light">
-                        <tr>
-                            <th>खेळ</th>
-                            <th>विद्यार्थी</th>
-                            <th>प्राप्त गुण</th>
-                            <th>अचूकता</th>
-                            <th>मिळालेले XP</th>
-                            <th>वेळ</th>
-                            <th class="text-end">कृती</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($recentSessions as $session)
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center gap-2">
-                                        <span class="fs-5">{{ data_get($session->game->configuration, 'icon', '🎮') }}</span>
-                                        <div>
-                                            <div class="fw-bold">{{ $session->game->title_marathi }}</div>
-                                            <div class="small text-secondary">{{ $session->game->title }}</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="fw-semibold">{{ $session->student->user->name ?? 'इयत्ता ४ थी विद्यार्थी' }}</span>
-                                </td>
-                                <td>
-                                    <strong class="text-primary">{{ $session->result?->score ?? 0 }}</strong>
-                                    <span class="text-muted small">/ {{ $session->result?->max_score ?? 0 }}</span>
-                                </td>
-                                <td>
-                                    @php
-                                        $acc = (float) ($session->result?->accuracy ?? 0);
-                                        $badgeColor = $acc >= 80 ? 'bg-success' : ($acc >= 50 ? 'bg-warning text-dark' : 'bg-danger');
-                                    @endphp
-                                    <span class="badge {{ $badgeColor }} rounded-pill px-2 py-1">
-                                        {{ number_format($acc, 0) }}%
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="text-success fw-bold">+{{ $session->result?->xp_awarded ?? 0 }} XP</span>
-                                </td>
-                                <td>
-                                    <span class="text-muted small">{{ $session->completed_at?->diffForHumans() ?? 'काही वेळापूर्वी' }}</span>
-                                </td>
-                                <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-primary rounded-pill px-3" href="{{ route('games.sessions.result', $session) }}">
-                                        निकाल कार्ड पहा
-                                    </a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="nq-stat">
+                    <small>वर्ग सरासरी अचूकता</small>
+                    <strong>{{ $stats['class_accuracy'] !== null ? number_format((float) $stats['class_accuracy'], 1).'%' : '—' }}</strong>
+                </div>
+                <div class="nq-stat">
+                    <small>पुढचे पाऊल</small>
+                    <strong>खेळातून शिकूया</strong>
+                </div>
             </div>
         </section>
-    @endif
+
+        <!-- Flagship AppleMath -->
+        <section class="nq-feature">
+            <div class="d-flex align-items-center gap-3">
+                <div class="nq-feature-mark" aria-hidden="true"><i class="bi bi-basket2-fill"></i></div>
+                <div>
+                    <div class="d-flex flex-wrap gap-2 mb-1">
+                        <span class="nq-tag nq-tag-hot">विशेष गणित खेळ</span>
+                        <span class="nq-tag">श्री. अमोल किसन हंकारे निर्मित</span>
+                    </div>
+                    <h2 class="h4 mb-1" style="color: var(--nq-orange-deep);">AppleMath (सफरचंद गणित)</h2>
+                    <p class="mb-0 small" style="color: var(--nq-ink-soft); max-width: 38rem;">
+                        झाडावरील सफरचंद मोजून टोपलीत टाकणे, हातच्याची बेरीज, वजाबाकी आणि गुणाकार संकल्पनांचे परस्परसंवादी डिजिटल मॉडेल.
+                    </p>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <a class="nq-btn nq-btn-ghost" href="https://games.techedu.in/applemath/" target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>थेट वेब व्हर्जन (TechEdu)
+                </a>
+                @php
+                    $appleGame = $games->firstWhere('code', 'ADDITION_ADVENTURE') ?? $games->first();
+                @endphp
+                @if ($appleGame)
+                    <form method="POST" action="{{ route('games.start', $appleGame) }}">
+                        @csrf
+                        <button class="nq-btn nq-btn-orange" type="submit">
+                            <i class="bi bi-play-fill" aria-hidden="true"></i>पोर्टलवर खेळा
+                        </button>
+                    </form>
+                @endif
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <div class="nq-filters" role="group" aria-label="खेळ वर्गवारी">
+            <button class="btn nq-filter btn-primary active" type="button" data-filter="all">
+                <i class="bi bi-stars me-1" aria-hidden="true"></i>सर्व खेळ ({{ $games->count() }})
+            </button>
+            <button class="btn nq-filter btn-outline-secondary" type="button" data-filter="applemath">
+                <i class="bi bi-basket2 me-1" aria-hidden="true"></i>AppleMath व मूलभूत क्रिया
+            </button>
+            <button class="btn nq-filter btn-outline-secondary" type="button" data-filter="math">
+                <i class="bi bi-123 me-1" aria-hidden="true"></i>संख्याज्ञान व भूमिती
+            </button>
+            <button class="btn nq-filter btn-outline-secondary" type="button" data-filter="marathi">
+                <i class="bi bi-book me-1" aria-hidden="true"></i>मराठी भाषा व व्याकरण
+            </button>
+        </div>
+
+        <!-- Games grid -->
+        <div class="row g-4" id="gamesGrid">
+            @forelse ($games as $game)
+                @php
+                    $firstLevel = $game->levels->first();
+                    $config = $game->configuration ?? [];
+                    $category = data_get($config, 'category', 'math');
+                    $icon = data_get($config, 'icon', '★');
+                    $flnBadge = data_get($config, 'fln_badge', 'इयत्ता ४ थी');
+                    $competency = data_get($config, 'competency', $game->skills->first()?->name_marathi);
+                @endphp
+                <div class="col-sm-6 col-xl-4 game-item-col" data-category="{{ $category }}">
+                    <article class="nq-card game-catalog-card" data-cat="{{ $category }}">
+                        <div class="nq-card-top d-flex justify-content-between align-items-start gap-2">
+                            <div class="nq-card-icon game-catalog-icon" aria-hidden="true">{{ $icon }}</div>
+                            <span class="nq-tag">{{ $flnBadge }}</span>
+                        </div>
+
+                        <div class="nq-card-body">
+                            <h2 class="nq-card-title">{{ $game->title_marathi }}</h2>
+                            <div class="nq-card-sub">{{ $game->title }}</div>
+
+                            @if ($competency)
+                                <div class="nq-competency">
+                                    <i class="bi bi-check2-circle" aria-hidden="true"></i><span>{{ $competency }}</span>
+                                </div>
+                            @endif
+
+                            <p class="nq-card-desc">{{ $game->description_marathi ?: $game->description }}</p>
+
+                            <div class="nq-meta">
+                                <span><i class="bi bi-layers-fill me-1" aria-hidden="true"></i>{{ $game->levels->count() }} पातळ्या</span>
+                                <span><i class="bi bi-heart-fill me-1" aria-hidden="true"></i>{{ data_get($firstLevel?->configuration, 'lives', 3) }} संधी</span>
+                                @if ($firstLevel?->time_limit_seconds)
+                                    <span><i class="bi bi-stopwatch-fill me-1" aria-hidden="true"></i>{{ $firstLevel->time_limit_seconds }} सेकंद</span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="nq-card-foot">
+                            <form method="POST" action="{{ route('games.start', $game) }}">
+                                @csrf
+                                <button class="nq-btn nq-btn-orange w-100" type="submit">
+                                    <i class="bi bi-play-fill" aria-hidden="true"></i>खेळ सुरू करा
+                                </button>
+                            </form>
+                        </div>
+                    </article>
+                </div>
+            @empty
+                <div class="col-12">
+                    <div class="nq-empty">
+                        <i class="bi bi-compass d-block mb-2" aria-hidden="true"></i>
+                        <p class="mb-0 fw-semibold">इयत्ता ४ थी साठी सध्या कोणताही प्रकाशित अध्ययन खेळ उपलब्ध नाही.</p>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+
+        <!-- Recent attempts -->
+        @if ($recentSessions->isNotEmpty())
+            <section class="nq-panel">
+                <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-2">
+                    <div>
+                        <h2 class="h5 mb-1">इयत्ता ४ थी: अलीकडील खेळ सत्रे</h2>
+                        <p class="small mb-0" style="color: var(--nq-ink-soft);">विद्यार्थ्यांनी सोडवलेले खेळ व नोंदवलेले प्रगती निकाल</p>
+                    </div>
+                    <span class="nq-tag nq-tag-hot"><i class="bi bi-graph-up" aria-hidden="true"></i>थेट निकाल</span>
+                </div>
+                <div class="table-responsive">
+                    <table class="nq-table">
+                        <thead>
+                            <tr>
+                                <th>खेळ</th>
+                                <th>विद्यार्थी</th>
+                                <th>प्राप्त गुण</th>
+                                <th>अचूकता</th>
+                                <th>मिळालेले XP</th>
+                                <th>वेळ</th>
+                                <th class="text-end">कृती</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($recentSessions as $session)
+                                @php
+                                    $acc = (float) ($session->result?->accuracy ?? 0);
+                                    $accClass = $acc >= 80 ? 'nq-acc-hi' : ($acc >= 50 ? 'nq-acc-mid' : 'nq-acc-lo');
+                                @endphp
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center gap-2">
+                                            <span class="fs-5" aria-hidden="true">{{ data_get($session->game->configuration, 'icon', '★') }}</span>
+                                            <div>
+                                                <div class="fw-bold">{{ $session->game->title_marathi }}</div>
+                                                <div class="small" style="color: var(--nq-ink-soft);">{{ $session->game->title }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td><span class="fw-semibold">{{ $session->student->user->name ?? 'इयत्ता ४ थी विद्यार्थी' }}</span></td>
+                                    <td>
+                                        <strong style="color: var(--nq-orange-deep);">{{ $session->result?->score ?? 0 }}</strong>
+                                        <span class="small" style="color: var(--nq-ink-soft);">/ {{ $session->result?->max_score ?? 0 }}</span>
+                                    </td>
+                                    <td><span class="nq-acc {{ $accClass }}">{{ number_format($acc, 0) }}%</span></td>
+                                    <td><span class="fw-bold" style="color: var(--nq-leaf);">+{{ $session->result?->xp_awarded ?? 0 }} XP</span></td>
+                                    <td><span class="small" style="color: var(--nq-ink-soft);">{{ $session->completed_at?->diffForHumans() ?? 'काही वेळापूर्वी' }}</span></td>
+                                    <td class="text-end">
+                                        <a class="nq-btn nq-btn-ghost py-1 px-3 small" href="{{ route('games.sessions.result', $session) }}">निकाल कार्ड पहा</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        @endif
+    </div>
 
     <!-- JavaScript Filter for Tabs -->
     <script>
