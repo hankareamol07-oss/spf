@@ -61,3 +61,67 @@ uploaded archive's credentials or connect staging to the live database.
 
 The owner must separately approve release after staging acceptance. A draft
 pull request or passing syntax check is not that approval.
+
+## Manual verification handoff
+
+The owner will perform the staging and physical-iPhone checks manually.
+These checks are **pending**, not passed. The Replit preview is not the
+authenticated Laravel application and cannot establish these outcomes.
+
+Use two synthetic students (A and B), their assigned mentor and an admin.
+Record the staging branch/commit, tester, date, browser/device and dummy record
+identifiers. Keep credentials and real student information out of this document.
+
+### Games
+
+Inventory every published game and its engine on staging; do not check only
+the themed examples. For each game record pass/fail and evidence for:
+
+- [ ] Correct and incorrect answers produce the expected feedback.
+- [ ] Timer expiry and exhausted lives end the session correctly.
+- [ ] Disconnect during an answer request, reconnect and retry; verify saved
+      answers and scores agree with the result, without duplicate awards.
+- [ ] Disconnect during completion, confirm no unsaved success is displayed,
+      reconnect and use the retry action; confirm the result is saved once.
+- [ ] Scores and XP agree with the original scoring rules and saved records.
+- [ ] Results survive refresh and appear in the teacher's progress screen.
+- [ ] Replay creates the expected new session without changing earlier results
+      or granting duplicate XP for the same completed session.
+
+### Independent teacher access
+
+Use the existing mentor student-progress screen for each grant and revocation.
+
+| Action for student A | Expected student A access |
+| --- | --- |
+| Neither test granted | Neither pre-test nor post-test |
+| Grant pre-test only | Pre-test only |
+| Grant post-test too | Both tests |
+| Revoke pre-test | Post-test only |
+| Revoke post-test | Neither test |
+| Grant post-test only from neither | Post-test only |
+
+- [ ] Student B cannot start A's assigned test or open A's attempt/result URLs.
+- [ ] Save direct attempt links, revoke access, then confirm old links cannot
+      resume or submit a revoked attempt.
+- [ ] Leave an attempt open, revoke access in the mentor session, then submit
+      in the student session; access must be denied without saving new answers
+      or awarding XP.
+- [ ] Complete a test before revoking access; its teacher-visible answers,
+      score, completion status and XP history must remain intact afterward.
+- [ ] Re-grant access; existing attempt limits and completed records still apply.
+- [ ] An unassigned mentor cannot grant or revoke access for either student.
+- [ ] Publication, availability window, school, class and academic-year
+      restrictions still apply even when the teacher grants access.
+
+### Layout and physical iPhone
+
+- [ ] Compare mentor and admin screens with the current release; retain the
+      original layout, apart from the intentional mentor grant/revoke controls.
+- [ ] On physical iPhone Safari, record model and iOS version and check game
+      keyboard, audio after touch, dialogs, touch targets and safe-area navigation.
+- [ ] Exercise answer submission, completion retry, results and replay on that
+      device. Browser emulation does not count as physical-iPhone verification.
+
+Any failure blocks release until resolved and rechecked. Manual acceptance
+does not itself merge the pull request or authorize deployment.
