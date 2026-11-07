@@ -47,18 +47,19 @@
 
     <section class="card portal-card mb-4">
         <div class="card-header bg-white border-0 pt-4 px-4">
-            <h2 class="h4 mb-1">{{ $gradeLevel !== null ? 'इयत्ता '.$gradeLevel : 'विद्यार्थी' }} पूर्व चाचणी</h2>
-            <p class="text-secondary mb-0">निवडलेल्या विद्यार्थ्याला विषयानुसार पूर्व चाचणी द्या.</p>
+            <h2 class="h4 mb-1">{{ $gradeLevel !== null ? 'इयत्ता '.$gradeLevel : 'विद्यार्थी' }} · चाचणी प्रवेश</h2>
+            <p class="text-secondary mb-0">पूर्व चाचणी आणि उत्तर चाचणीचा प्रवेश स्वतंत्रपणे द्या किंवा बंद करा. प्रवेश दिलेली चाचणीच विद्यार्थ्याला दिसेल.</p>
         </div>
         <div class="card-body">
             <div class="row g-3">
-                @foreach ($preTests as $test)
+                @forelse ($preTests as $test)
                     @php
                         $assessmentAssignment = $assessmentAssignments->get($test->id);
                     @endphp
                     <div class="col-md-6">
                         <article class="border rounded-4 p-3 h-100">
                             <span class="badge text-bg-light">{{ $test->subject->name_marathi }}</span>
+                            <span class="badge text-bg-primary">{{ $test->type === 'pre_test' ? 'पूर्व चाचणी' : 'उत्तर चाचणी' }}</span>
                             <h3 class="h5 mt-2">{{ $test->title_marathi }}</h3>
                             <p class="small text-secondary">{{ $test->question_count }} प्रश्न · {{ $test->duration_minutes }} मिनिटे</p>
                             @if ($assessmentAssignment)
@@ -66,11 +67,14 @@
                             @endif
                             <form method="POST" action="{{ route('mentor.students.assessments.assign', [$student, $test]) }}">
                                 @csrf
-                                <button class="btn btn-primary" type="submit">{{ $assessmentAssignment ? 'पुन्हा द्या' : 'पूर्व चाचणी द्या' }}</button>
+                                <input type="hidden" name="access" value="{{ $assessmentAssignment && $assessmentAssignment->status !== 'revoked' ? 'revoke' : 'grant' }}">
+                                <button class="btn {{ $assessmentAssignment && $assessmentAssignment->status !== 'revoked' ? 'btn-outline-secondary' : 'btn-primary' }}" type="submit">{{ $assessmentAssignment && $assessmentAssignment->status !== 'revoked' ? 'प्रवेश बंद करा' : 'प्रवेश द्या' }}</button>
                             </form>
                         </article>
                     </div>
-                @endforeach
+                @empty
+                    <p class="text-secondary mb-0">या विद्यार्थ्याच्या वर्गासाठी अद्याप प्रकाशित पूर्व किंवा उत्तर चाचणी नाही.</p>
+                @endforelse
             </div>
         </div>
     </section>

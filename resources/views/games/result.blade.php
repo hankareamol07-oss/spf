@@ -77,8 +77,8 @@
             <a class="btn btn-outline-primary btn-lg rounded-pill px-4 fw-semibold" href="{{ route('games.index') }}">
                 <i class="bi bi-grid-fill me-1"></i>इयत्ता ४ थी चे इतर खेळ
             </a>
-            <a class="btn btn-outline-secondary btn-lg rounded-pill px-4 fw-semibold" href="{{ route('fellowship.reports.index') }}">
-                <i class="bi bi-file-earmark-text me-1"></i>फेलोशिप अहवाल
+            <a class="btn btn-outline-secondary btn-lg rounded-pill px-4 fw-semibold" href="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? route('dashboard').'#learning-map' : route('fellowship.reports.index') }}">
+                <i class="bi bi-map me-1"></i>{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'माझा अध्ययन नकाशा' : 'फेलोशिप अहवाल' }}
             </a>
         </div>
     </section>

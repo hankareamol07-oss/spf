@@ -69,4 +69,24 @@ class Test extends Model
     {
         return $this->hasMany(AssessmentAssignment::class);
     }
+
+    public function requiresTeacherAccess(): bool
+    {
+        return in_array($this->type, ['pre_test', 'post_test'], true);
+    }
+
+    public function hasTeacherAccess(Student $student, int $academicYearId): bool
+    {
+        return ! $this->requiresTeacherAccess()
+            || $this->assignments()
+                ->where('student_id', $student->id)
+                ->where('academic_year_id', $academicYearId)
+                ->whereNotNull('assigned_by')
+                ->whereIn('status', [
+                    AssessmentAssignment::STATUS_ASSIGNED,
+                    AssessmentAssignment::STATUS_IN_PROGRESS,
+                    AssessmentAssignment::STATUS_COMPLETED,
+                ])
+                ->exists();
+    }
 }

@@ -1,13 +1,20 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'mr' : str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? config('app.name') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @if (auth()->user()->hasRole(\App\Enums\RoleCode::Student))
+        <link rel="stylesheet" href="{{ asset('css/student-adventure.css') }}">
+        <script src="{{ asset('js/student-adventure.js') }}" defer></script>
+    @endif
 </head>
-<body>
+<body class="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'spf-student' : '' }}">
+    @if (auth()->user()->hasRole(\App\Enums\RoleCode::Student))
+        @include('components.layouts.student-shell')
+    @else
     <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top" aria-label="Primary navigation">
         <div class="container">
             <a class="navbar-brand portal-brand fw-bold d-flex align-items-center gap-2" href="{{ route('dashboard') }}">
@@ -83,6 +90,7 @@
         @endif
         {{ $slot }}
     </main>
+    @endif
     @stack('scripts')
 </body>
 </html>

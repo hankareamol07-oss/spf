@@ -34,7 +34,7 @@
         </header>
 
         <!-- Main Interactive Game Stage -->
-        <main class="nipun-stage" aria-live="polite">
+        <section class="nipun-stage" aria-label="खेळ" aria-live="polite">
             <!-- HUD Stats -->
             <div class="nipun-stats-hud">
                 <div class="nipun-stat-card">
@@ -69,7 +69,7 @@
                     <span>मोठ्याने ऐका</span>
                 </button>
 
-                <h2 class="nipun-main-prompt" data-game-prompt>खेळ लोड होत आहे...</h2>
+                <h2 class="nipun-main-prompt" data-game-prompt tabindex="-1">खेळ लोड होत आहे...</h2>
             </div>
 
             <!-- Interactive Visual Engine Area (Apple tree / Place value house / Lilypad pond) -->
@@ -80,7 +80,7 @@
 
             <!-- Celebratory / Encouraging Feedback Toast -->
             <div class="nipun-feedback-banner" data-game-feedback-banner aria-live="assertive">
-                <div class="nipun-feedback-title" data-game-feedback-title>शाब्बास! 🌟</div>
+                <div class="nipun-feedback-title" data-game-feedback-title>शाब्बास!</div>
                 <div class="nipun-feedback-msg" data-game-feedback-msg>अचूक उत्तर!</div>
             </div>
 
@@ -90,7 +90,8 @@
                     <span class="visually-hidden">उत्तर तपासत आहे...</span>
                 </div>
             </div>
-        </main>
+            <button type="button" class="btn btn-primary mx-auto mt-3" data-game-finish-retry hidden>निकाल जतन करण्याचा पुन्हा प्रयत्न करा</button>
+        </section>
 
         <noscript>
             <div class="alert alert-warning mt-3">हा परस्परसंवादी खेळ खेळण्यासाठी JavaScript सुरू असणे आवश्यक आहे.</div>

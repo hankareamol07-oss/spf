@@ -234,6 +234,8 @@
     async function finishGame() {
         if (submitting) return;
         submitting = true;
+        const retryButton = root.querySelector('[data-game-finish-retry]');
+        if (retryButton) retryButton.hidden = true;
         if (elements.loading) elements.loading.hidden = false;
 
         try {
@@ -246,11 +248,23 @@
                 },
                 body: JSON.stringify({}),
             });
+            if (!resp.ok) throw new Error('Game completion was not saved.');
+            const finalState = await resp.json();
+            if (!finalState.completed) throw new Error('Game has not completed.');
             window.location.assign(root.dataset.resultUrl);
         } catch (e) {
-            window.location.assign(root.dataset.resultUrl);
+            submitting = false;
+            showFeedback({
+                tone: 'error',
+                title: 'जोडणी तपासूया',
+                message: 'निकाल जतन झाला नाही. इंटरनेट तपासून पुन्हा प्रयत्न कर.',
+            });
+            if (retryButton) retryButton.hidden = false;
+        } finally {
+            if (elements.loading) elements.loading.hidden = true;
         }
     }
+    root.querySelector('[data-game-finish-retry]')?.addEventListener('click', finishGame);
 
     async function submitAnswer(questionId, value, btn) {
         if (submitting) return;
@@ -275,7 +289,9 @@
 
             if (!resp.ok) throw new Error('Answer submission failed');
 
-            state = await resp.json();
+            const nextState = await resp.json();
+            if (!nextState.session || !nextState.stats) throw new Error('Invalid game response');
+            state = nextState;
             timerDeadline = state.session.remaining_seconds === null
                 ? null
                 : Date.now() + (state.session.remaining_seconds * 1000);
@@ -298,8 +314,9 @@
 
             setTimeout(() => {
                 hideFeedback();
-                render();
                 submitting = false;
+                render();
+                elements.prompt?.focus({ preventScroll: true });
             }, 850);
         } catch (e) {
             showFeedback({
@@ -573,6 +590,7 @@
         }
         if (elements.progress) elements.progress.textContent = `${answeredQ.toLocaleString('mr-IN')} / ${totalQ.toLocaleString('mr-IN')}`;
         if (elements.progressBar) elements.progressBar.style.width = `${percent}%`;
+        root.querySelector('[role="progressbar"]')?.setAttribute('aria-valuenow', String(percent));
 
         if (!question) {
             finishGame();

@@ -20,8 +20,8 @@
                         <span class="badge bg-warning text-dark fs-6 px-3 py-2 rounded-pill shadow-sm">
                             <i class="bi bi-mortarboard-fill me-1"></i>इयत्ता: ४ थी (Class 4)
                         </span>
-                        <a class="btn btn-light rounded-pill fw-semibold shadow-sm text-primary" href="{{ route('fellowship.reports.index') }}">
-                            <i class="bi bi-file-earmark-text-fill text-warning me-1"></i>फेलोशिप अहवाल
+                        <a class="btn btn-light rounded-pill fw-semibold shadow-sm text-primary" href="{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? route('dashboard').'#learning-map' : route('fellowship.reports.index') }}">
+                            <i class="bi bi-map-fill text-warning me-1"></i>{{ auth()->user()->hasRole(\App\Enums\RoleCode::Student) ? 'माझा अध्ययन नकाशा' : 'फेलोशिप अहवाल' }}
                         </a>
                     </div>
                 </div>

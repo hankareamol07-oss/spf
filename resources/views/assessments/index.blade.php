@@ -1,5 +1,5 @@
 <x-layouts.app title="Assessments">
-    <div class="mb-4"><h1 class="h2 portal-brand mb-1">माझ्या चाचण्या</h1><p class="text-secondary mb-0">पूर्व चाचणी, पुनर्मूल्यांकन आणि उत्तर चाचणी</p></div>
+    <div class="mb-4"><h1 class="h2 portal-brand mb-1">माझ्या चाचण्या</h1><p class="text-secondary mb-0">शिक्षकांनी प्रवेश दिलेल्या चाचण्या येथे दिसतील.</p></div>
     <div class="row g-4 mb-5">
         @forelse ($tests as $test)
             @php
@@ -9,7 +9,7 @@
             <div class="col-md-6 col-xl-4">
                 <article class="card portal-card h-100">
                     <div class="card-body p-4">
-                        <div class="d-flex justify-content-between gap-2 mb-3"><span class="badge text-bg-primary">{{ str_replace('_', ' ', $test->type) }}</span><span class="small text-secondary">{{ $test->duration_minutes }} मिनिटे</span></div>
+                        <div class="d-flex justify-content-between gap-2 mb-3"><span class="badge text-bg-primary">{{ $test->type === 'pre_test' ? 'पूर्व चाचणी' : ($test->type === 'post_test' ? 'उत्तर चाचणी' : 'पुनर्मूल्यांकन') }}</span><span class="small text-secondary">{{ $test->duration_minutes }} मिनिटे</span></div>
                         <h2 class="h4 portal-brand">{{ $test->title_marathi }}</h2>
                         <p class="text-secondary">{{ $test->title }}</p>
                         <div class="small mb-3">{{ $test->subject->name_marathi }} · {{ $test->question_count }} प्रश्न · पातळी {{ $test->difficulty }}</div>
@@ -28,7 +28,7 @@
                 </article>
             </div>
         @empty
-            <div class="col-12"><div class="alert alert-light border">सध्या कोणतीही चाचणी उपलब्ध नाही.</div></div>
+            <div class="col-12"><div class="alert alert-light border"><i class="bi bi-person-check me-2" aria-hidden="true"></i>शिक्षक चाचणीचा प्रवेश देतील तेव्हा ती येथे दिसेल. तोपर्यंत खेळ आणि सराव सुरू ठेवूया!</div></div>
         @endforelse
     </div>
     <section>

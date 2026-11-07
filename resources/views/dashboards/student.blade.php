@@ -28,6 +28,8 @@
         </div>
     </header>
 
+    @include('dashboards.partials.island-map')
+
     <div class="row g-4 mb-4">
         <div class="col-lg-5">
             <article class="card portal-card h-100"><div class="card-body p-4">
@@ -143,24 +145,9 @@
     <div class="row g-4 mb-4">
         <div class="col-lg-7">
             <section class="card portal-card h-100" aria-labelledby="journey-heading"><div class="card-body p-4">
-                <h2 class="h3 mb-4" id="journey-heading">माझा शिकण्याचा प्रवास</h2>
-                <div class="learning-journey">
-                    @forelse ($learningJourney as $step)
-                        <div class="journey-step journey-{{ $step['state'] }}">
-                            <span class="journey-marker">
-                                @if ($step['state'] === 'completed') ✓ @elseif ($step['state'] === 'unlocked') 🔓 @else 🔒 @endif
-                            </span>
-                            <div>
-                                <strong>{{ $step['skill']->name_marathi ?: $step['skill']->name }}</strong>
-                                <div class="small text-secondary">
-                                    @if ($step['state'] === 'completed') पूर्ण @elseif ($step['state'] === 'unlocked') आता शिकूया @else पुढील टप्पा @endif
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="text-secondary mb-0">तुझा अध्ययन मार्ग तयार होत आहे.</p>
-                    @endforelse
-                </div>
+                <h2 class="h3 mb-4" id="journey-heading">प्रत्येक दिवशी नवे साहस</h2>
+                <p class="text-secondary">मराठी आणि गणिताच्या बेटांवर एकेक कौशल्य शिकूया. नकाशातील उजळ टप्प्यावर दाबून सराव सुरू कर.</p>
+                <a class="btn btn-primary student-touch-target" href="#learning-map"><i class="bi bi-map me-2" aria-hidden="true"></i>माझ्या नकाशाकडे चला</a>
             </div></section>
         </div>
         <div class="col-lg-5">
@@ -186,7 +173,7 @@
 
     <div class="row g-4">
         <div class="col-lg-6">
-            <section class="card portal-card h-100" aria-labelledby="badges-heading"><div class="card-body p-4">
+            <section id="student-badges" class="card portal-card h-100" aria-labelledby="badges-heading"><div class="card-body p-4">
                 <h2 class="h3 mb-3" id="badges-heading">माझे बॅज</h2>
                 <div class="row g-2">
                     @forelse ($recentBadges as $studentBadge)

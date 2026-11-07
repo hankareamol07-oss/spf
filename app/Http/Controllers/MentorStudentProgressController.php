@@ -65,7 +65,7 @@ class MentorStudentProgressController extends Controller
             ]);
         $preTests = Test::query()
             ->where('status', 'published')
-            ->where('type', 'pre_test')
+            ->whereIn('type', ['pre_test', 'post_test'])
             ->where(fn ($query) => $query
                 ->whereNull('school_id')
                 ->orWhere('school_id', $student->school_id))
@@ -135,6 +135,7 @@ class MentorStudentProgressController extends Controller
     public function assignAssessment(Request $request, Student $student, Test $test): RedirectResponse
     {
         Gate::authorize('view', $student);
+        $validated = $request->validate(['access' => ['sometimes', 'in:grant,revoke']]);
         /** @var Mentor $mentor */
         $mentor = $request->user()->mentor;
         $date = now($request->user()->school->timezone)->toDateString();
@@ -155,7 +156,7 @@ class MentorStudentProgressController extends Controller
 
         abort_unless(
             $test->status === 'published'
-                && $test->type === 'pre_test'
+                && in_array($test->type, ['pre_test', 'post_test'], true)
                 && ($test->school_id === null || $test->school_id === $student->school_id)
                 && ($test->academic_year_id === null || $test->academic_year_id === $assignment->academic_year_id)
                 && ($test->school_class_id === null
@@ -163,22 +164,33 @@ class MentorStudentProgressController extends Controller
             404,
         );
 
-        AssessmentAssignment::query()->updateOrCreate(
+        if (($validated['access'] ?? 'grant') === 'revoke') {
+            AssessmentAssignment::query()
+                ->whereBelongsTo($test)
+                ->whereBelongsTo($student)
+                ->where('academic_year_id', $assignment->academic_year_id)
+                ->update(['status' => AssessmentAssignment::STATUS_REVOKED]);
+
+            return back()->with('status', 'चाचणीचा प्रवेश बंद केला. आधीचे निकाल सुरक्षित आहेत.');
+        }
+
+        $assessmentAssignment = AssessmentAssignment::query()->firstOrNew(
             [
                 'test_id' => $test->id,
                 'student_id' => $student->id,
                 'academic_year_id' => $assignment->academic_year_id,
             ],
-            [
-                'assigned_by' => $request->user()->id,
-                'status' => AssessmentAssignment::STATUS_ASSIGNED,
-                'assigned_at' => now(),
-                'started_at' => null,
-                'completed_at' => null,
-            ],
         );
+        $assessmentAssignment->fill([
+            'assigned_by' => $request->user()->id,
+            'assigned_at' => now(),
+            'status' => in_array($assessmentAssignment->status, [
+                AssessmentAssignment::STATUS_IN_PROGRESS,
+                AssessmentAssignment::STATUS_COMPLETED,
+            ], true) ? $assessmentAssignment->status : AssessmentAssignment::STATUS_ASSIGNED,
+        ])->save();
 
-        return back()->with('status', 'इयत्ता चौथीची पूर्व चाचणी विद्यार्थ्याला दिली.');
+        return back()->with('status', 'निवडलेल्या चाचणीचा प्रवेश विद्यार्थ्याला दिला.');
     }
 
     public function refresh(
