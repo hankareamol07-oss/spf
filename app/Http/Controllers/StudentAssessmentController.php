@@ -34,6 +34,17 @@ class StudentAssessmentController extends Controller
         $tests = Test::query()
             ->where('status', 'published')
             ->where(fn ($query) => $query
+                ->whereNotIn('type', ['pre_test', 'post_test'])
+                ->orWhereHas('assignments', fn ($assignments) => $assignments
+                    ->where('student_id', $student->id)
+                    ->where('academic_year_id', $enrollment->academic_year_id)
+                    ->whereNotNull('assigned_by')
+                    ->whereIn('status', [
+                        AssessmentAssignment::STATUS_ASSIGNED,
+                        AssessmentAssignment::STATUS_IN_PROGRESS,
+                        AssessmentAssignment::STATUS_COMPLETED,
+                    ])))
+            ->where(fn ($query) => $query
                 ->whereNull('school_id')
                 ->orWhere('school_id', $student->school_id))
             ->where(fn ($query) => $query
@@ -65,6 +76,17 @@ class StudentAssessmentController extends Controller
             ->values();
         $recentAttempts = $student->testAttempts()
             ->where('status', 'completed')
+            ->whereHas('test', fn ($query) => $query
+                ->whereNotIn('type', ['pre_test', 'post_test'])
+                ->orWhereHas('assignments', fn ($assignments) => $assignments
+                    ->where('student_id', $student->id)
+                    ->whereColumn('assessment_assignments.academic_year_id', 'test_attempts.academic_year_id')
+                    ->whereNotNull('assigned_by')
+                    ->whereIn('status', [
+                        AssessmentAssignment::STATUS_ASSIGNED,
+                        AssessmentAssignment::STATUS_IN_PROGRESS,
+                        AssessmentAssignment::STATUS_COMPLETED,
+                    ])))
             ->with('test:id,title,title_marathi,type')
             ->latest('submitted_at')
             ->limit(10)
@@ -88,6 +110,7 @@ class StudentAssessmentController extends Controller
 
         $attempt = DB::transaction(function () use ($student, $enrollment, $test): TestAttempt {
             $lockedStudent = Student::query()->whereKey($student->id)->lockForUpdate()->firstOrFail();
+            $this->assertAvailable($test, $lockedStudent, $enrollment);
             $existingAttempt = $lockedStudent->testAttempts()
                 ->whereBelongsTo($test)
                 ->whereBelongsTo($enrollment->academicYear)
@@ -135,6 +158,7 @@ class StudentAssessmentController extends Controller
             ->whereBelongsTo($test)
             ->whereBelongsTo($student)
             ->where('academic_year_id', $enrollment->academic_year_id)
+            ->where('status', '!=', AssessmentAssignment::STATUS_REVOKED)
             ->update([
                 'status' => AssessmentAssignment::STATUS_IN_PROGRESS,
                 'started_at' => now(),
@@ -144,9 +168,11 @@ class StudentAssessmentController extends Controller
     }
 
     public function show(
+        Request $request,
         TestAttempt $studentTestAttempt,
         AssessmentAttemptService $attemptService,
     ): View|RedirectResponse {
+        $this->assertAttemptAccess($request, $studentTestAttempt);
         if ($studentTestAttempt->status === 'completed') {
             return redirect()->route('assessments.attempts.result', $studentTestAttempt);
         }
@@ -170,13 +196,15 @@ class StudentAssessmentController extends Controller
         TestAttempt $studentTestAttempt,
         AssessmentAttemptService $attemptService,
     ): RedirectResponse {
+        $this->assertAttemptAccess($request, $studentTestAttempt);
         $attemptService->complete($studentTestAttempt, $request->validated('answers'));
 
         return redirect()->route('assessments.attempts.result', $studentTestAttempt);
     }
 
-    public function result(TestAttempt $studentTestAttempt): View|RedirectResponse
+    public function result(Request $request, TestAttempt $studentTestAttempt): View|RedirectResponse
     {
+        $this->assertAttemptAccess($request, $studentTestAttempt);
         if ($studentTestAttempt->status !== 'completed') {
             return redirect()->route('assessments.attempts.show', $studentTestAttempt);
         }
@@ -226,6 +254,7 @@ class StudentAssessmentController extends Controller
 
         abort_unless(
             $test->status === 'published'
+                && $test->hasTeacherAccess($student, $enrollment->academic_year_id)
                 && ($test->school_id === null || $test->school_id === $student->school_id)
                 && ($test->academic_year_id === null || $test->academic_year_id === $enrollment->academic_year_id)
                 && ($test->school_class_id === null || $test->school_class_id === $schoolClassId)
@@ -243,6 +272,15 @@ class StudentAssessmentController extends Controller
             ->with(['academicYear', 'division.schoolClass'])
             ->latest('enrolled_on')
             ->firstOrFail();
+    }
+
+    private function assertAttemptAccess(Request $request, TestAttempt $attempt): void
+    {
+        $student = $request->user()?->student;
+        abort_unless($student && $student->id === $attempt->student_id, 404);
+        // Do not expose an old attempt or accept answers after access is revoked.
+        // Completed records remain stored for the teacher, not deleted.
+        abort_unless($attempt->test->hasTeacherAccess($student, $attempt->academic_year_id), 404);
     }
 
     /**

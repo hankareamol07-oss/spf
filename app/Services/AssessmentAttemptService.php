@@ -168,6 +168,7 @@ class AssessmentAttemptService
                 ->whereBelongsTo($lockedAttempt->test)
                 ->whereBelongsTo($lockedAttempt->student)
                 ->where('academic_year_id', $lockedAttempt->academic_year_id)
+                ->where('status', '!=', AssessmentAssignment::STATUS_REVOKED)
                 ->update([
                     'status' => AssessmentAssignment::STATUS_COMPLETED,
                     'completed_at' => $submittedAt,

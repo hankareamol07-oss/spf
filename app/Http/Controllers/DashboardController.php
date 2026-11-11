@@ -174,7 +174,7 @@ class DashboardController extends Controller
             ->where(fn (Builder $query): Builder => $query
                 ->whereNull('school_id')
                 ->orWhere('school_id', $student->school_id))
-            ->whereIn('code', ['MARATHI', 'MATHEMATICS'])
+            ->whereIn('code', ['MARATHI', 'MATHEMATICS', 'ENGLISH'])
             ->orderBy('sort_order')
             ->get(['id', 'code', 'name', 'name_marathi'])
             ->map(function (Subject $subject) use ($skillProgress): array {
@@ -269,6 +269,44 @@ class DashboardController extends Controller
 
                     return ['skill' => $skill, 'state' => $state];
                 });
+        // Presentation-only journeys: retain the existing mastery rules and
+        // start practice through the original, authenticated POST action.
+        $journeyActivities = Activity::query()
+            ->where('type', 'practice')
+            ->where('status', 'published')
+            ->whereNotNull('published_at')
+            ->where(fn (Builder $query): Builder => $query
+                ->whereNull('school_id')
+                ->orWhere('school_id', $student->school_id))
+            ->whereHas('practiceActivity')
+            ->whereHas('questions', fn (Builder $query): Builder => $query->where('is_active', true))
+            ->orderBy('difficulty')
+            ->orderBy('id')
+            ->get()
+            ->groupBy('skill_id');
+        $learningJourneys = $subjectProgress->map(function (array $subjectEntry) use ($progressBySkill, $journeyActivities): array {
+            $unlocked = false;
+            $steps = $subjectEntry['subject']->skills()
+                ->where('is_active', true)
+                ->orderBy('sort_order')
+                ->orderBy('id')
+                ->get(['id', 'subject_id', 'name', 'name_marathi'])
+                ->map(function (Skill $skill) use ($progressBySkill, $journeyActivities, &$unlocked): array {
+                    $mastered = $progressBySkill->get($skill->id)?->status === 'mastered';
+                    $state = $mastered ? 'completed' : ($unlocked ? 'locked' : 'unlocked');
+                    if (! $mastered) {
+                        $unlocked = true;
+                    }
+
+                    return [
+                        'skill' => $skill,
+                        'state' => $state,
+                        'activity' => $journeyActivities->get($skill->id)?->first(),
+                    ];
+                });
+
+            return ['subject' => $subjectEntry['subject'], 'steps' => $steps];
+        });
         $currentXp = $academicYear === null
             ? 0
             : (int) XpTransaction::query()
@@ -313,6 +351,7 @@ class DashboardController extends Controller
             'studentRecommendations' => $studentRecommendations,
             'classLearningOutcomes' => $classLearningOutcomes,
             'learningJourney' => $learningJourney,
+            'learningJourneys' => $learningJourneys,
             'todayGame' => $todayGame,
         ]);
     }

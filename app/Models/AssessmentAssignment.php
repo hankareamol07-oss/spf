@@ -18,6 +18,8 @@ class AssessmentAssignment extends Model
 
     public const STATUS_COMPLETED = 'completed';
 
+    public const STATUS_REVOKED = 'revoked';
+
     protected $fillable = [
         'test_id', 'student_id', 'academic_year_id', 'assigned_by', 'status',
         'assigned_at', 'started_at', 'completed_at',

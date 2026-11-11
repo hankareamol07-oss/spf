@@ -1,0 +1,634 @@
+{
+  "source": "User-supplied SAT_LO_Question_Database.xlsx",
+  "sheet": "इयत्ता 4 थी",
+  "note": "Adapted multiple-choice practice. Not automatic oral-reading or dictation assessment.",
+  "CLASS_FOUR_POST": [
+    {
+      "q": "‘कष्ट’ या शब्दातील जोडाक्षर कोणते?",
+      "options": [
+        "ष्ट",
+        "क",
+        "श",
+        "ट"
+      ],
+      "answer": 0,
+      "source": {
+        "questionId": 45,
+        "competencyId": 56,
+        "skill": "जोडाक्षर युक्त शब्द",
+        "adapted": true
+      }
+    },
+    {
+      "q": "४३५ + ३४५ = ?",
+      "options": [
+        "७७०",
+        "७८०",
+        "८८०",
+        "६८०"
+      ],
+      "answer": 1,
+      "source": {
+        "questionId": 52,
+        "competencyId": 63,
+        "skill": "बेरीज (संख्या)",
+        "adapted": true
+      }
+    },
+    {
+      "q": "३२३ × ३ = ?",
+      "options": [
+        "९६९",
+        "९५९",
+        "९७९",
+        "८६९"
+      ],
+      "answer": 0,
+      "source": {
+        "questionId": 56,
+        "competencyId": 67,
+        "skill": "गुणाकार (संख्या)",
+        "adapted": true
+      }
+    },
+    {
+      "q": "३६९ ÷ ३ = ?",
+      "options": [
+        "११३",
+        "१२३",
+        "१३३",
+        "१२२"
+      ],
+      "answer": 1,
+      "source": {
+        "questionId": 58,
+        "competencyId": 69,
+        "skill": "भागाकार (संख्या)",
+        "adapted": true
+      }
+    }
+  ],
+  "CLASS_FOUR_PRE": [
+    {
+      "q": "‘पतंग’ हा शब्द निवड.",
+      "options": [
+        "पंतग",
+        "पतंग",
+        "पातग",
+        "पतन"
+      ],
+      "answer": 1,
+      "source": {
+        "questionId": 44,
+        "competencyId": 55,
+        "skill": "शब्द वाचन",
+        "adapted": true
+      }
+    },
+    {
+      "q": "५३६ + २४७ = ?",
+      "options": [
+        "७८३",
+        "७७३",
+        "८८३",
+        "७८२"
+      ],
+      "answer": 0,
+      "source": {
+        "questionId": 52,
+        "competencyId": 63,
+        "skill": "बेरीज (संख्या)",
+        "adapted": true
+      }
+    },
+    {
+      "q": "वाचा: ‘हिवाळ्यात उबदार कपडे घालतात.’ हिवाळ्यात कसे कपडे घालतात?",
+      "options": [
+        "ओले",
+        "पातळ",
+        "उबदार",
+        "फाटके"
+      ],
+      "answer": 2,
+      "source": {
+        "questionId": 46,
+        "competencyId": 57,
+        "skill": "वाक्य वाचन",
+        "adapted": true
+      }
+    },
+    {
+      "q": "८३६ − ३४५ = ?",
+      "options": [
+        "४९१",
+        "५९१",
+        "४८१",
+        "४९२"
+      ],
+      "answer": 0,
+      "source": {
+        "questionId": 54,
+        "competencyId": 65,
+        "skill": "वजाबाकी (संख्या)",
+        "adapted": true
+      }
+    }
+  ],
+  "CLASS_FOUR_STAGE_CONTENT": {
+    "mr-1": {
+      "title": "अक्षरांची ओळख",
+      "en": "Letters",
+      "activity": "SAT LO · अक्षर स्तर",
+      "questions": [
+        {
+          "q": "‘के, सै, पो, फु, तू, मॅ, टो, मौ, औ, सि’ यांपैकी स्वर कोणता?",
+          "options": [
+            "के",
+            "औ",
+            "टो",
+            "सि"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 43,
+            "competencyId": 54,
+            "skill": "अक्षर स्तर",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘सै’ हे अक्षर निवड.",
+          "options": [
+            "से",
+            "सा",
+            "सै",
+            "सि"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 43,
+            "competencyId": 54,
+            "skill": "अक्षर स्तर",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘तू’ या अक्षरात कोणती मात्रा आहे?",
+          "options": [
+            "दीर्घ ऊ",
+            "ऱ्हस्व इ",
+            "दीर्घ ई",
+            "अनुस्वार"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 43,
+            "competencyId": 54,
+            "skill": "अक्षर स्तर",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "mr-2": {
+      "title": "शब्द वाचन",
+      "en": "Word reading",
+      "activity": "SAT LO · शब्द ओळख",
+      "questions": [
+        {
+          "q": "योग्य शब्द निवड: सा__ली",
+          "options": [
+            "व",
+            "क",
+            "ग",
+            "ज"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 44,
+            "competencyId": 55,
+            "skill": "शब्द वाचन",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘पतंग’ हा शब्द निवड.",
+          "options": [
+            "पंतग",
+            "पतंग",
+            "पातग",
+            "पतन"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 44,
+            "competencyId": 55,
+            "skill": "शब्द वाचन",
+            "adapted": true
+          }
+        },
+        {
+          "q": "रिकामी जागा भर: सै__क",
+          "options": [
+            "ली",
+            "वा",
+            "नि",
+            "पा"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 44,
+            "competencyId": 55,
+            "skill": "शब्द वाचन",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "mr-3": {
+      "title": "जोडाक्षरांचा शोध",
+      "en": "Joined letters",
+      "activity": "SAT LO · जोडाक्षर युक्त शब्द",
+      "questions": [
+        {
+          "q": "जोडाक्षर असलेला शब्द निवड.",
+          "options": [
+            "कपडे",
+            "पाऊस",
+            "पतंग",
+            "सूर्य"
+          ],
+          "answer": 3,
+          "source": {
+            "questionId": 45,
+            "competencyId": 56,
+            "skill": "जोडाक्षर युक्त शब्द",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘कष्ट’ या शब्दातील जोडाक्षर कोणते?",
+          "options": [
+            "ष्ट",
+            "क",
+            "श",
+            "ट"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 45,
+            "competencyId": 56,
+            "skill": "जोडाक्षर युक्त शब्द",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘प्रेम’ या शब्दातील सुरुवातीचे जोडाक्षर निवड.",
+          "options": [
+            "प",
+            "प्र",
+            "म",
+            "र"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 45,
+            "competencyId": 56,
+            "skill": "जोडाक्षर युक्त शब्द",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "mr-4": {
+      "title": "वाक्य वाचन",
+      "en": "Sentence reading",
+      "activity": "SAT LO · वाचनावर आधारित सराव",
+      "questions": [
+        {
+          "q": "वाचा: ‘हिवाळ्यात उबदार कपडे घालतात.’ हिवाळ्यात कसे कपडे घालतात?",
+          "options": [
+            "ओले",
+            "पातळ",
+            "उबदार",
+            "फाटके"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 46,
+            "competencyId": 57,
+            "skill": "वाक्य वाचन",
+            "adapted": true
+          }
+        },
+        {
+          "q": "वाचा: ‘मुलांनी अभ्यास केला.’ मुलांनी काय केले?",
+          "options": [
+            "अभ्यास",
+            "नाच",
+            "प्रवास",
+            "स्वयंपाक"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 46,
+            "competencyId": 57,
+            "skill": "वाक्य वाचन",
+            "adapted": true
+          }
+        },
+        {
+          "q": "वाचा: ‘कोल्हा जंगलात शिकार शोधत होता.’ कोल्हा कुठे होता?",
+          "options": [
+            "शाळेत",
+            "बाजारात",
+            "घरात",
+            "जंगलात"
+          ],
+          "answer": 3,
+          "source": {
+            "questionId": 50,
+            "competencyId": 61,
+            "skill": "वाक्य स्तर",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "m-1": {
+      "title": "बेरीज",
+      "en": "Addition",
+      "activity": "SAT LO · संख्या आणि शाब्दिक उदाहरणे",
+      "questions": [
+        {
+          "q": "५३६ + २४७ = ?",
+          "options": [
+            "७८३",
+            "७७३",
+            "८८३",
+            "७८२"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 52,
+            "competencyId": 63,
+            "skill": "बेरीज (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "४३५ + ३४५ = ?",
+          "options": [
+            "७७०",
+            "७८०",
+            "८८०",
+            "६८०"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 52,
+            "competencyId": 63,
+            "skill": "बेरीज (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "एका शाळेत ४२७ मुले व ४२५ मुली आहेत. एकूण विद्यार्थी किती?",
+          "options": [
+            "८४२",
+            "८६२",
+            "८५२",
+            "८५१"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 53,
+            "competencyId": 64,
+            "skill": "बेरीज (शाब्दिक)",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "m-2": {
+      "title": "वजाबाकी",
+      "en": "Subtraction",
+      "activity": "SAT LO · संख्या आणि शाब्दिक उदाहरणे",
+      "questions": [
+        {
+          "q": "८३६ − ३४५ = ?",
+          "options": [
+            "४९१",
+            "५९१",
+            "४८१",
+            "४९२"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 54,
+            "competencyId": 65,
+            "skill": "वजाबाकी (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "७२९ − ४४४ = ?",
+          "options": [
+            "२७५",
+            "२८५",
+            "३८५",
+            "२८४"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 54,
+            "competencyId": 65,
+            "skill": "वजाबाकी (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "गोदामातील १५६७ पोत्यांपैकी बाजरीची ७३५ पोती आहेत. उरलेली तुरीची पोती किती?",
+          "options": [
+            "८२२",
+            "९३२",
+            "८३२",
+            "८३३"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 55,
+            "competencyId": 66,
+            "skill": "वजाबाकी (शाब्दिक)",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "m-3": {
+      "title": "संख्या ओळख",
+      "en": "Number recognition",
+      "activity": "SAT LO · संख्या वाचन",
+      "questions": [
+        {
+          "q": "‘सातशे पाच’ ही संख्या निवड.",
+          "options": [
+            "७५०",
+            "७०५",
+            "७५",
+            "५०७"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 51,
+            "competencyId": 62,
+            "skill": "संख्या ओळख",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘दोन हजार तीनशे सोळा’ ही संख्या कोणती?",
+          "options": [
+            "२३६१",
+            "२१३६",
+            "२३१६",
+            "२३६"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 51,
+            "competencyId": 62,
+            "skill": "संख्या ओळख",
+            "adapted": true
+          }
+        },
+        {
+          "q": "‘पाच हजार चारशे पासष्ट’ ही संख्या निवड.",
+          "options": [
+            "५४६५",
+            "५४५६",
+            "५६४५",
+            "५४६"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 51,
+            "competencyId": 62,
+            "skill": "संख्या ओळख",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "m-4": {
+      "title": "गुणाकार",
+      "en": "Multiplication",
+      "activity": "SAT LO · संख्या आणि शाब्दिक उदाहरणे",
+      "questions": [
+        {
+          "q": "३२३ × ३ = ?",
+          "options": [
+            "९६९",
+            "९५९",
+            "९७९",
+            "८६९"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 56,
+            "competencyId": 67,
+            "skill": "गुणाकार (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "१२१ × ४ = ?",
+          "options": [
+            "४४४",
+            "४८४",
+            "४७४",
+            "४८८"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 56,
+            "competencyId": 67,
+            "skill": "गुणाकार (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "एका ब्रशची किंमत ७ रुपये आहे. ८४ ब्रशची किंमत किती?",
+          "options": [
+            "५७८",
+            "५९८",
+            "५८८",
+            "४८८"
+          ],
+          "answer": 2,
+          "source": {
+            "questionId": 57,
+            "competencyId": 68,
+            "skill": "गुणाकार (शाब्दिक)",
+            "adapted": true
+          }
+        }
+      ]
+    },
+    "m-5": {
+      "title": "भागाकार",
+      "en": "Division",
+      "activity": "SAT LO · संख्या आणि शाब्दिक उदाहरणे",
+      "questions": [
+        {
+          "q": "३६९ ÷ ३ = ?",
+          "options": [
+            "११३",
+            "१२३",
+            "१३३",
+            "१२२"
+          ],
+          "answer": 1,
+          "source": {
+            "questionId": 58,
+            "competencyId": 69,
+            "skill": "भागाकार (संख्या)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "ओवीकडे ४५६ फुले आहेत. एका गुच्छात ४ फुले असल्यास किती गुच्छ बनतील?",
+          "options": [
+            "११४",
+            "१०४",
+            "१२४",
+            "११६"
+          ],
+          "answer": 0,
+          "source": {
+            "questionId": 59,
+            "competencyId": 70,
+            "skill": "भागाकार (शाब्दिक)",
+            "adapted": true
+          }
+        },
+        {
+          "q": "४५६ फुलांचे ४ फुलांचे गुच्छ बनवण्यासाठी कोणती क्रिया करशील?",
+          "options": [
+            "४५६ + ४",
+            "४५६ − ४",
+            "४५६ × ४",
+            "४५६ ÷ ४"
+          ],
+          "answer": 3,
+          "source": {
+            "questionId": 59,
+            "competencyId": 70,
+            "skill": "भागाकार (शाब्दिक)",
+            "adapted": true
+          }
+        }
+      ]
+    }
+  }
+}
