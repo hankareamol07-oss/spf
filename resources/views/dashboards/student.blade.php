@@ -56,11 +56,11 @@
             <h2 class="h4 mb-3">माझी कौशल्य प्रगती</h2>
             <div class="row g-3 h-100">
                 @forelse ($subjectProgress as $progress)
-                    <div class="col-md-6">
+                    <div class="col-md-6 col-xl-4">
                         <article class="card portal-card subject-progress-card h-100">
                             <div class="card-body p-4 d-flex flex-column">
-                                <span class="student-icon {{ $progress['subject']->code === 'MARATHI' ? 'bg-danger-subtle' : 'bg-info-subtle' }}">
-                                    {{ $progress['subject']->code === 'MARATHI' ? 'अ' : '१२३' }}
+                                <span class="student-icon {{ match ($progress['subject']->code) { 'MARATHI' => 'bg-danger-subtle', 'ENGLISH' => 'bg-success-subtle', default => 'bg-info-subtle' } }}">
+                                    {{ match ($progress['subject']->code) { 'MARATHI' => 'अ', 'ENGLISH' => 'ABC', default => '१२३' } }}
                                 </span>
                                 <h2 class="h4 mt-3">{{ $progress['subject']->name_marathi ?: $progress['subject']->name }}</h2>
                                 <div class="d-flex justify-content-between small mb-1"><span>माझी प्रगती</span><strong>{{ $progress['mastery'] }}%</strong></div>

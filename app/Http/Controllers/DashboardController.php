@@ -174,7 +174,7 @@ class DashboardController extends Controller
             ->where(fn (Builder $query): Builder => $query
                 ->whereNull('school_id')
                 ->orWhere('school_id', $student->school_id))
-            ->whereIn('code', ['MARATHI', 'MATHEMATICS'])
+            ->whereIn('code', ['MARATHI', 'MATHEMATICS', 'ENGLISH'])
             ->orderBy('sort_order')
             ->get(['id', 'code', 'name', 'name_marathi'])
             ->map(function (Subject $subject) use ($skillProgress): array {

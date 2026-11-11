@@ -67,6 +67,8 @@
                 <h2 class="nipun-main-prompt" data-game-prompt tabindex="-1">खेळ लोड होत आहे...</h2>
             </div>
 
+            <div class="nipun-context-card" data-game-context hidden></div>
+
             <div data-game-visual-area></div>
 
             <div class="nipun-choices-grid" data-game-choices></div>

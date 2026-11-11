@@ -38,8 +38,8 @@
             <div class="nq-stats mx-auto" style="max-width: 52rem;">
                 <div class="nq-stat">
                     <small>प्राप्त गुण</small>
-                    <strong>{{ $result->score }}</strong>
-                    <small>कमाल: {{ $result->max_score }}</small>
+                    <strong>{{ $result?->score ?? 0 }}</strong>
+                    <small>कमाल: {{ $result?->max_score ?? 0 }}</small>
                 </div>
                 <div class="nq-stat">
                     <small>अचूकता (Accuracy)</small>
@@ -48,12 +48,12 @@
                 </div>
                 <div class="nq-stat">
                     <small>अचूक उत्तरे</small>
-                    <strong>{{ $result->correct_count }} / {{ $gameSession->questions->count() }}</strong>
+                    <strong>{{ $result?->correct_count ?? 0 }} / {{ $gameSession->questions->count() }}</strong>
                     <small>प्रश्न अचूक</small>
                 </div>
                 <div class="nq-stat">
                     <small>कमावलेले XP</small>
-                    <strong>+{{ $result->xp_awarded }}</strong>
+                    <strong>+{{ $result?->xp_awarded ?? 0 }}</strong>
                     <small>गुणवत्ता बोनस</small>
                 </div>
             </div>

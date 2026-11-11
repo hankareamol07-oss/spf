@@ -6,7 +6,7 @@
     <div class="spf-map-subjects" role="group" aria-label="नकाशासाठी विषय निवडा">
         @foreach ($learningJourneys as $journey)
             <button type="button" class="spf-subject-choice" data-journey-target="journey-{{ $journey['subject']->id }}" aria-pressed="{{ $loop->first ? 'true' : 'false' }}" aria-controls="journey-{{ $journey['subject']->id }}">
-                <span aria-hidden="true">{{ $journey['subject']->code === 'MARATHI' ? 'अ' : '१२३' }}</span>
+                <span aria-hidden="true">{{ match ($journey['subject']->code) { 'MARATHI' => 'अ', 'ENGLISH' => 'ABC', default => '१२३' } }}</span>
                 {{ $journey['subject']->name_marathi ?: $journey['subject']->name }}
             </button>
         @endforeach

@@ -299,16 +299,26 @@ class GameQuestionProvider
             default => [1, 10, 100, 1000],
         };
         $place = $places[array_rand($places)];
-        $minimum = 100;
-        $maximum = 9999;
-        $number = random_int($minimum, $maximum);
-        $digit = intdiv($number, $place) % 10;
+        $digitCount = $difficulty === 1 ? 3 : 4;
+        $digit = random_int(1, 9);
+        $targetPosition = $digitCount - 1 - (int) round(log10($place));
+        $digits = [];
 
-        if ($digit === 0) {
-            $number += $place;
-            $digit = 1;
+        for ($position = 0; $position < $digitCount; $position++) {
+            if ($position === $targetPosition) {
+                $digits[] = $digit;
+                continue;
+            }
+
+            $minDigit = $position === 0 ? 1 : 0;
+            $pool = array_values(array_filter(
+                range($minDigit, 9),
+                fn (int $candidate): bool => $candidate !== $digit,
+            ));
+            $digits[] = $pool[array_rand($pool)];
         }
 
+        $number = (int) implode('', $digits);
         $answer = $digit * $place;
 
         return $this->numericQuestion(
